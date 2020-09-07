@@ -1,7 +1,8 @@
 package br.com.imobzi.batch.controller;
 
-import br.com.imobzi.batch.domain.Immobile;
-import br.com.imobzi.batch.service.ImmobileService;
+import br.com.imobzi.batch.domain.Excel;
+import br.com.imobzi.batch.domain.ImmobileResponse;
+import br.com.imobzi.batch.facade.OrchestratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -13,20 +14,19 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @RequestMapping("/immobile")
 public class ImmobileController {
+
     @Autowired
-    private ImmobileService immobileService;
+    private OrchestratorService orchestratorService;
 
     @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<Immobile>> saveImmobile(
-            @RequestParam(value = "files") MultipartFile[] files) {
-        try {
+    public ResponseEntity<List<Excel>> saveImmobile(
+            @RequestParam(value = "files") MultipartFile[] files) throws Exception {
+
+            ImmobileResponse immobileResponse=  new ImmobileResponse();
             for (final MultipartFile file : files) {
-                this.immobileService.postImmobileInImobzi(file);
+                immobileResponse = this.orchestratorService.orchestrator(file);
             }
-            return ResponseEntity.status(HttpStatus.CREATED).build();
-        } catch (final Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+            return new ResponseEntity(immobileResponse,HttpStatus.CREATED);
     }
 }

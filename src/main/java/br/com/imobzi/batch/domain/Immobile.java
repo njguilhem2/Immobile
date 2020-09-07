@@ -1,7 +1,6 @@
 package br.com.imobzi.batch.domain;
 
 import lombok.*;
-
 import java.util.*;
 import java.io.Serializable;
 
@@ -48,8 +47,8 @@ public class Immobile implements Serializable {
     private List<PropertyCalendar> property_calendar;
     private String property_situation;
     private String property_type;
-    private Integer rental_value;
-    private Integer sale_value;
+    private Double rental_value;
+    private Double sale_value;
     private String site_description;
     private String site_meta_description;
     private Boolean site_publish;
@@ -67,4 +66,118 @@ public class Immobile implements Serializable {
     private String visit_time;
     private String with_plaque;
     private String zipcode;
+
+    public Immobile withActive(Boolean active){
+        this.active = active;
+        return this;
+    }
+    public Immobile withAddress(String address){
+        this.address = address;
+        return this;
+    }
+    public Immobile withAddressCompl(String address_complement){
+        this.address_complement = address_complement;
+        return this;
+    }
+    public Immobile withNeighborhood(String neighborhood){
+        this.neighborhood = neighborhood;
+        return this;
+    }
+    public Immobile withCity(String city){
+        this.city = city;
+        return this;
+    }
+    public Immobile withState(String state){
+        this.state = state;
+        return this;
+    }
+    public Immobile withZipcode(String zipcode){
+        this.zipcode = zipcode;
+        return this;
+    }
+    public Immobile withCountry(String country){
+        this.country = country;
+        return this;
+    }
+    public Immobile withFinality(String finality){
+        this.finality = finality;
+        return this;
+    }
+    public Immobile withPropertyType(String propertyType){
+        this.property_type = propertyType;
+        return this;
+    }
+    public Immobile withBuildingName(String buildingName){
+        this.building_name = buildingName;
+        return this;
+    }
+    public Immobile withBuilding(Boolean building){
+        this.building = building;
+        return this;
+    }
+    public Immobile withAlternativeCode(String alternativeCode){
+        this.alternative_code = alternativeCode;
+        return this;
+    }
+    public Immobile withBedroom(Integer bedroom){
+        this.bedroom = bedroom;
+        return this;
+    }
+    public Immobile withSuite(Integer suite){
+        this.suite = suite;
+        return this;
+    }
+    public Immobile withBathroom(Integer bathroom){
+        this.bathroom = bathroom;
+        return this;
+    }
+    public Immobile withGarage(Integer garage){
+        this.garage = garage;
+        return this;
+    }
+    public Immobile withUsefulArea(Integer useful_area){
+        this.useful_area = useful_area;
+        return this;
+    }
+    public Immobile withLotArea(Integer lot_area){
+        this.lot_area = lot_area;
+        return this;
+    }
+    public Immobile withArea(Integer area){
+        this.area = area;
+        return this;
+    }
+    public Immobile withDescriptions(String description){
+        this.description = description;
+        return this;
+    }
+    public Immobile withSaleValue(Double saleValue){
+        this.sale_value =saleValue;
+        return this;
+    }
+    public Immobile withRentalValue(Double rentalValue){
+        this.rental_value = rentalValue;
+        return this;
+    }
+    public Immobile withBuilt(Integer built){
+        this.built = built;
+        return this;
+    }
+    public Immobile withPhotos(List<Photos> photos){
+        this.photos = photos;
+        return this;
+    }
+    public Immobile withOwners(List<Owners> owners){
+        this.owners = owners;
+        return this;
+    }
+    public Immobile withMultimidias(List<Multimidias> multimidias){
+        this.multimidias = multimidias;
+        return this;
+    }
+
+    public Immobile withStatus(String status) {
+        this.status = status;
+        return this;
+    }
 }
