@@ -3,6 +3,10 @@ package br.com.imobzi.batch.utils;
 import br.com.imobzi.batch.handler.BadRequestException;
 import org.springframework.util.ObjectUtils;
 
+import java.text.MessageFormat;
+import java.util.*;
+import java.util.logging.Formatter;
+
 
 public class ExcelValidation {
     //TODO verificar quais campos ele vai ter, se não vou ter q mockar
@@ -46,9 +50,9 @@ public class ExcelValidation {
         }
         throw new BadRequestException("Vizinhança nula ou inválido");
     }
-    public static String validZipcode(String valid){
+    public static String validZipcode(Integer valid){
         if(!ObjectUtils.isEmpty(valid)){
-            return valid;
+            return valid.toString();
         }
         throw new BadRequestException("CEP nula ou inválido");
     }
@@ -69,5 +73,13 @@ public class ExcelValidation {
             return valid;
         }
         throw new BadRequestException("Estado não pode ser nulo ou está inválido");
+    }
+    public static String validDescription(String valid){
+        Integer teste = 120;
+        Integer teste2= 130;
+        String teste3 = MessageFormat
+                .format("ola...aslkdçsalksdksa sdajdsaildsajierqweoqw 2113123",teste,teste2);
+        System.out.println(teste3);
+        return "ola";
     }
 }

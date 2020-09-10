@@ -18,8 +18,8 @@ public class OrchestratorService {
     @Autowired
     private ExcelService excelService;
 
-    public ImmobileResponse orchestrator(final MultipartFile inputStream) throws Exception {
-        List<Excel> excelList = this.excelService.postImmobileInImobzi(inputStream);
+    public List<ImmobileResponse> orchestrator(final MultipartFile inputStream) throws Exception {
+        List<Excel> excelList = this.excelService.readList(inputStream);
         List<Property> property = excelListToImmobile(excelList);
         return this.imobziService.postImmobile(property);
     }
@@ -39,7 +39,6 @@ public class OrchestratorService {
                         .withUsefulArea(excel.getUseful_area())
                         .withLotArea(excel.getLot_area())
                         .withArea(excel.getArea())
-                        //formatter java
                         .withDescriptions(excel.getDescription() + excel.getIptu().toString()
                                 + excel.getCaptador() + excel.getDiscount())
                         .withSaleValue(excel.getSale_value())
@@ -57,6 +56,7 @@ public class OrchestratorService {
                         .withOwners(ImmobileConverter.withOwners(excel.getOwners()))
                         .withPhotos(ImmobileConverter.withPhotos(excel.getPhotos()))
                         .withMultimidias(ImmobileConverter.withMultimidias(excel.getMultimidias()))
+                        .withSiteUrl("url")
                 )).collect(Collectors.toList());
         return property;
     }

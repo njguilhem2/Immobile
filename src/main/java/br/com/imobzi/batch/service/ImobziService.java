@@ -5,5 +5,5 @@ import br.com.imobzi.batch.domain.Property;
 import java.util.*;
 
 public interface ImobziService {
-    ImmobileResponse postImmobile(List<Property> property);
+    List<ImmobileResponse> postImmobile(List<Property> property);
 }

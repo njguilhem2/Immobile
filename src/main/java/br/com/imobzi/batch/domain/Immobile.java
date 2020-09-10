@@ -1,5 +1,6 @@
 package br.com.imobzi.batch.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import java.util.*;
 import java.io.Serializable;
@@ -178,6 +179,10 @@ public class Immobile implements Serializable {
 
     public Immobile withStatus(String status) {
         this.status = status;
+        return this;
+    }
+    public Immobile withSiteUrl(String url){
+        this.site_url = url;
         return this;
     }
 }
