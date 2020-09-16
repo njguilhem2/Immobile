@@ -21,4 +21,10 @@ public class ImmobileConverter {
         multimidiasList.setUrl(multimidias);
         return new ArrayList<Multimidias>(Arrays.asList(multimidiasList));
     }
+    public static String withUrls(String state,String city,
+                                  Integer bathroom,Integer bedroom){
+        String urlsBuilder = state + city + bathroom.toString()+bedroom.toString();
+        String urls = urlsBuilder.replace(" ", "_");
+        return urls;
+    }
 }

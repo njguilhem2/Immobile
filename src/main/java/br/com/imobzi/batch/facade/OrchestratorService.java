@@ -19,9 +19,9 @@ public class OrchestratorService {
     private ExcelService excelService;
 
     public List<ImmobileResponse> orchestrator(final MultipartFile inputStream,
-                                               String description )
+                                               ImmobileRequest immobileRequest )
             throws Exception {
-        List<Excel> excelList = this.excelService.readList(inputStream,description);
+        List<Excel> excelList = this.excelService.readList(inputStream,immobileRequest);
         List<Property> property = excelListToImmobile(excelList);
         return this.imobziService.postImmobile(property);
     }
@@ -41,8 +41,7 @@ public class OrchestratorService {
                         .withUsefulArea(excel.getUseful_area())
                         .withLotArea(excel.getLot_area())
                         .withArea(excel.getArea())
-                        .withDescriptions(excel.getDescription() + excel.getIptu().toString()
-                                + excel.getCaptador() + excel.getDiscount())
+                        .withDescriptions(excel.getDescription())
                         .withSaleValue(excel.getSale_value())
                         .withRentalValue(excel.getRental_value())
                         .withBuilt(excel.getBuilt())
@@ -58,7 +57,12 @@ public class OrchestratorService {
                         .withOwners(ImmobileConverter.withOwners(excel.getOwners()))
                         .withPhotos(ImmobileConverter.withPhotos(excel.getPhotos()))
                         .withMultimidias(ImmobileConverter.withMultimidias(excel.getMultimidias()))
-                        .withSiteUrl("url")
+                        .withSiteTitle(excel.getTittle())
+                        .withSiteUrl(ImmobileConverter.withUrls(
+                                excel.getState(),
+                                excel.getCity(),
+                                excel.getBathroom(),
+                                excel.getBedroom()))
                 )).collect(Collectors.toList());
         return property;
     }

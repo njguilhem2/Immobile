@@ -1,6 +1,7 @@
 package br.com.imobzi.batch.service.impl;
 
 import br.com.imobzi.batch.domain.Excel;
+import br.com.imobzi.batch.domain.ImmobileRequest;
 import br.com.imobzi.batch.handler.BadRequestException;
 import br.com.imobzi.batch.service.ExcelService;
 import br.com.imobzi.batch.utils.ExcelValidation;
@@ -23,12 +24,12 @@ import java.util.List;
 @Slf4j
 public class ExcelServiceImpl implements ExcelService {
     @Override
-    public List<Excel> readList(final MultipartFile inputStream, String description)
+    public List<Excel> readList(final MultipartFile inputStream, ImmobileRequest immobileRequest)
             throws Exception {
-        return parseXlsxToImmobileList(inputStream,description);
+        return parseXlsxToImmobileList(inputStream,immobileRequest);
     }
 
-    public List<Excel> parseXlsxToImmobileList(MultipartFile file, String description)
+    public List<Excel> parseXlsxToImmobileList(MultipartFile file, ImmobileRequest immobileRequest)
             throws Exception {
         List<Excel> excelList = new ArrayList<>();
         log.info("opening excel information");
@@ -69,7 +70,7 @@ public class ExcelServiceImpl implements ExcelService {
                         .useful_area((int) cells.get(15).getNumericCellValue())
                         .lot_area((int) cells.get(16).getNumericCellValue())
                         .area((int) cells.get(17).getNumericCellValue())
-                        .description(ExcelValidation.validDescription(description,
+                        .description(ExcelValidation.validDescription(immobileRequest.getDescription(),
                                 cells.get(0).getStringCellValue(),
                                 cells.get(1).getStringCellValue(),
                                 cells.get(2).getStringCellValue(),
@@ -113,6 +114,7 @@ public class ExcelServiceImpl implements ExcelService {
                         .avaliation_value(cells.get(27).getNumericCellValue())
                         .discount(cells.get(28).getNumericCellValue())
                         .status("available")
+                        .tittle(immobileRequest.getTitle())
                         .build();
                 excelList.add(excel);
             } catch (RuntimeException e) {

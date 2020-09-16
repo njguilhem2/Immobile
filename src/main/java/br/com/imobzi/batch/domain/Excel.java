@@ -41,4 +41,5 @@ public class Excel {
     private String multimidias;
     private Double avaliation_value;
     private Double discount;
+    private String tittle;
 }

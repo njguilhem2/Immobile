@@ -10,7 +10,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Immobile implements Serializable {
-
     private Boolean active;
     private String address;
     private String address_complement;
@@ -183,6 +182,10 @@ public class Immobile implements Serializable {
     }
     public Immobile withSiteUrl(String url){
         this.site_url = url;
+        return this;
+    }
+    public Immobile withSiteTitle(String title){
+        this.site_title = title;
         return this;
     }
 }
