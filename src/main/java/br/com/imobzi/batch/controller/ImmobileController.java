@@ -1,10 +1,8 @@
 package br.com.imobzi.batch.controller;
 
-import br.com.imobzi.batch.domain.Excel;
 import br.com.imobzi.batch.domain.ImmobileRequest;
 import br.com.imobzi.batch.domain.ImmobileResponse;
 import br.com.imobzi.batch.facade.OrchestratorService;
-import br.com.imobzi.batch.utils.ExcelValidation;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,11 +27,11 @@ public class ImmobileController {
     produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<ImmobileResponse>> saveImmobile(
             @RequestParam(value = "files") MultipartFile[] files,
-            String teste) throws Exception {
+            String immobileString) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         ImmobileRequest immobileRequest = null;
         try {
-            immobileRequest = mapper.readValue(teste, ImmobileRequest.class);
+            immobileRequest = mapper.readValue(immobileString, ImmobileRequest.class);
         } catch (IOException e) {
             return ResponseEntity.badRequest().body(null);
         }
