@@ -23,11 +23,13 @@ import java.util.List;
 @Slf4j
 public class ExcelServiceImpl implements ExcelService {
     @Override
-    public List<Excel> readList(final MultipartFile inputStream) throws Exception {
-        return parseXlsxToImmobileList(inputStream);
+    public List<Excel> readList(final MultipartFile inputStream, String description)
+            throws Exception {
+        return parseXlsxToImmobileList(inputStream,description);
     }
 
-    public List<Excel> parseXlsxToImmobileList(MultipartFile file) throws Exception {
+    public List<Excel> parseXlsxToImmobileList(MultipartFile file, String description)
+            throws Exception {
         List<Excel> excelList = new ArrayList<>();
         log.info("opening excel information");
         Workbook workbook;
@@ -67,7 +69,37 @@ public class ExcelServiceImpl implements ExcelService {
                         .useful_area((int) cells.get(15).getNumericCellValue())
                         .lot_area((int) cells.get(16).getNumericCellValue())
                         .area((int) cells.get(17).getNumericCellValue())
-                        .description(cells.get(18).getStringCellValue())
+                        .description(ExcelValidation.validDescription(description,
+                                cells.get(0).getStringCellValue(),
+                                cells.get(1).getStringCellValue(),
+                                cells.get(2).getStringCellValue(),
+                                cells.get(3).getStringCellValue(),
+                                cells.get(4).getStringCellValue(),
+                                (int) cells.get(5).getNumericCellValue(),
+                                cells.get(6).getStringCellValue(),
+                                cells.get(7).getStringCellValue(),
+                                cells.get(8).getStringCellValue(),
+                                cells.get(9).getStringCellValue(),
+                                cells.get(10).getStringCellValue(),
+                                (int) cells.get(11).getNumericCellValue(),
+                                (int) cells.get(12).getNumericCellValue(),
+                                (int) cells.get(13).getNumericCellValue(),
+                                (int) cells.get(14).getNumericCellValue(),
+                                (int) cells.get(15).getNumericCellValue(),
+                                (int) cells.get(16).getNumericCellValue(),
+                                (int) cells.get(17).getNumericCellValue(),
+                                cells.get(18).getStringCellValue(),
+                                cells.get(19).getNumericCellValue(),
+                                cells.get(20).getNumericCellValue(),
+                                cells.get(21).getNumericCellValue(),
+                                (int) cells.get(22).getNumericCellValue(),
+                                cells.get(23).getStringCellValue(),
+                                cells.get(24).getStringCellValue(),
+                                cells.get(25).getStringCellValue(),
+                                cells.get(26).getStringCellValue(),
+                                cells.get(27).getNumericCellValue(),
+                                cells.get(28).getNumericCellValue()
+                                ))
                         .sale_value(ExcelValidation.validSaleValue
                                 (cells.get(19).getNumericCellValue()))
                         .rental_value(ExcelValidation.validRentalValue

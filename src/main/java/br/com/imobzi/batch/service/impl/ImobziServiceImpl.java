@@ -1,6 +1,5 @@
 package br.com.imobzi.batch.service.impl;
 
-import br.com.imobzi.batch.domain.Immobile;
 import br.com.imobzi.batch.domain.ImmobileResponse;
 import br.com.imobzi.batch.domain.Property;
 import br.com.imobzi.batch.handler.BadRequestException;
@@ -13,7 +12,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 

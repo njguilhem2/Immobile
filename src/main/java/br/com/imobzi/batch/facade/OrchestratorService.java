@@ -7,19 +7,21 @@ import br.com.imobzi.batch.utils.ImmobileConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 public class OrchestratorService {
+
     @Autowired
     private ImobziService imobziService;
     @Autowired
     private ExcelService excelService;
 
-    public List<ImmobileResponse> orchestrator(final MultipartFile inputStream) throws Exception {
-        List<Excel> excelList = this.excelService.readList(inputStream);
+    public List<ImmobileResponse> orchestrator(final MultipartFile inputStream,
+                                               String description )
+            throws Exception {
+        List<Excel> excelList = this.excelService.readList(inputStream,description);
         List<Property> property = excelListToImmobile(excelList);
         return this.imobziService.postImmobile(property);
     }

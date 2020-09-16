@@ -24,11 +24,11 @@ public class ImmobileController {
     @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<ImmobileResponse>> saveImmobile(
-            @RequestParam(value = "files") MultipartFile[] files) throws Exception {
-        ExcelValidation.validDescription("teste");
+            @RequestParam(value = "files") MultipartFile[] files,
+            @RequestParam(value = "description") String description) throws Exception {
             List<ImmobileResponse> immobileResponse=  new ArrayList<>();
             for (final MultipartFile file : files) {
-                immobileResponse = this.orchestratorService.orchestrator(file);
+                immobileResponse = this.orchestratorService.orchestrator(file,description);
             }
             return new ResponseEntity(immobileResponse,HttpStatus.CREATED);
     }
