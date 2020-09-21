@@ -66,6 +66,7 @@ public class Immobile implements Serializable {
     private String visit_time;
     private String with_plaque;
     private String zipcode;
+    private List<Links> links;
 
     public Immobile withActive(Boolean active){
         this.active = active;
@@ -186,6 +187,10 @@ public class Immobile implements Serializable {
     }
     public Immobile withSiteTitle(String title){
         this.site_title = title;
+        return this;
+    }
+    public Immobile withLinks(List<Links> links){
+        this.links = links;
         return this;
     }
 }

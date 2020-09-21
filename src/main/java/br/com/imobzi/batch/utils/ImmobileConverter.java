@@ -1,8 +1,8 @@
 package br.com.imobzi.batch.utils;
 
-import br.com.imobzi.batch.domain.Multimidias;
-import br.com.imobzi.batch.domain.Owners;
-import br.com.imobzi.batch.domain.Photos;
+import br.com.imobzi.batch.domain.*;
+import org.springframework.boot.actuate.endpoint.web.Link;
+
 import java.util.*;
 
 public class ImmobileConverter {
@@ -26,5 +26,12 @@ public class ImmobileConverter {
         String urlsBuilder = state + city + bathroom.toString()+bedroom.toString();
         String urls = urlsBuilder.replace(" ", "_");
         return urls;
+    }
+    public static List<Links> withLinks(String captador){
+        Links links = new Links();
+        Contact contact = new Contact();
+        contact.setName(captador);
+        links.setContact(contact);
+        return new ArrayList<Links>(Arrays.asList(links));
     }
 }
