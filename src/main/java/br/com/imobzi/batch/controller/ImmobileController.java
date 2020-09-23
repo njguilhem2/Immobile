@@ -3,17 +3,14 @@ package br.com.imobzi.batch.controller;
 import br.com.imobzi.batch.domain.ImmobileRequest;
 import br.com.imobzi.batch.domain.ImmobileResponse;
 import br.com.imobzi.batch.facade.OrchestratorService;
-import br.com.imobzi.batch.facade.OrchestratorServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,6 +21,7 @@ public class ImmobileController {
     @Autowired
     private OrchestratorService orchestratorService;
 
+    @CrossOrigin(origins = "*")
     @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE},
     produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<ImmobileResponse>> saveImmobile(
